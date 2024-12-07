@@ -1,11 +1,19 @@
-import React from 'react'
+import {BrowserRouter, Route, Routes } from "react-router-dom";
+import "./App.css";
+import {  Home, Notfound,About } from "./pages/index";
 
-const App = () => {
+function App() {
   return (
-    <div className='text-4xl w-full h-screen flex justify-center mx-auto items-center'>
-      My Wealth
-    </div>
-  )
+    <>
+    <BrowserRouter>
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="*" element={<Notfound />} />
+        <Route path="/about" element={<About />} />
+      </Routes>
+    </BrowserRouter>
+    </>
+  );
 }
 
-export default App
+export default App;
