@@ -40,7 +40,7 @@ const Navbar = () => {
             className={`flex-row  text-lg font-medium md:flex gap-x-3
             ${
               isMobile
-                ? "flex flex-col absolute top-14 left-0 w-full bg-[#051378] p-4 justify-center  items-center"
+                ? "flex flex-col absolute z-10 top-14 left-0 w-full bg-[#051378] p-4 justify-center  items-center"
                 : "hidden"
             }`}
           >
