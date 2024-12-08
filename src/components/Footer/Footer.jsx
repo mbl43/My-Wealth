@@ -21,8 +21,7 @@ const Footer = () => {
               <a href="mailto:"> mangeshlemte.a23@gmail.com</a>
             </p>
             <p className="text-sm opacity-80 py-1">
-              Phone:
-              <a href="tel:+917745028543"> 7745028543</a>
+              Phone:<a href="tel:+917745028543"> 7745028543</a>
             </p>
           </div>
 
