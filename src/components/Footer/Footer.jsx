@@ -24,8 +24,7 @@ const Footer = () => {
               Phone:<a href="tel:+917745028543"> 7745028543</a>
             </p>
           </div>
-
-         
+          
           <div className="text-center w-1/2">
             <h2 className="text-xl font-semibold mb-2">About</h2>
             <p className="text-sm opacity-80">
