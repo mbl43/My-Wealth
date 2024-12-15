@@ -1,24 +1,29 @@
 import React from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
-import "swiper/css";  
+import "swiper/css";
+import "swiper/css/pagination";
+import "swiper/css/navigation";
 
+import { Autoplay, Pagination, Navigation } from "swiper/modules";
 import banner1 from "../../assets/heroimg/banner1.jpg";
 
 const Hero = () => {
   return (
     <section className="w-full" style={{ height: "calc(100vh - 80px)" }}>
-   
       <Swiper
-        
-        slidesPerView={1} 
-        loop={true} 
+        spaceBetween={30}
+        centeredSlides={true}
         autoplay={{
-          delay: 2500, 
+          delay: 2500,
           disableOnInteraction: false,
         }}
-        onInit={(swiper) => {
-          console.log("Swiper initialized", swiper);
+        pagination={{
+          clickable: true,
         }}
+        navigation={true}
+        loop={true}
+        modules={[Autoplay, Pagination, Navigation]}
+        className="mySwiper"
       >
         {/* SwiperSlides for images */}
         <SwiperSlide>
