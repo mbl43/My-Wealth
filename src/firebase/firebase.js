@@ -7,19 +7,19 @@ import {
 } from 'firebase/auth';
 
 const firebaseConfig = {
-  apiKey: "AIzaSyCoIu-Qz4sGdYCzYokhUPXLSmG9HvryHoI",
-  authDomain: "my-wealth-df151.firebaseapp.com",
-  projectId: "my-wealth-df151",
-  storageBucket: "my-wealth-df151.firebasestorage.app",
-  messagingSenderId: "326275812505",
-  appId: "1:326275812505:web:bb7902770d6b3f778bbc08",
-  measurementId: "G-8BHM20XBP3"
+  apiKey: import.meta.env.VITE_FIREBASE_API_KEY,
+  authDomain: import.meta.env.VITE_FIREBASE_AUTH_DOMAIN,
+  projectId: import.meta.env.VITE_FIREBASE_PROJECT_ID,
+  storageBucket: import.meta.env.VITE_FIREBASE_STORAGE_BUCKET,
+  messagingSenderId: import.meta.env.VITE_FIREBASE_MESSAGING_SENDER_ID,
+  appId: import.meta.env.VITE_FIREBASE_APP_ID,
+  measurementId: import.meta.env.VITE_FIREBASE_MEASUREMENT_ID,
 };
 
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
 const auth = getAuth(app);
-
+console.log(auth)
 export default { 
   auth, 
   createUserWithEmailAndPassword, 
