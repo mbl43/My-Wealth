@@ -3,6 +3,7 @@ import { auth } from "../../firebase/firebase";
 import { signInWithEmailAndPassword } from "firebase/auth";
 import { Link, useNavigate } from "react-router-dom";
 import { Navbar } from "../index";
+import { toast } from "react-toastify";
 const Login = () => {
   const [email, setemail] = useState("");
   const [password, setpassword] = useState("");
@@ -16,13 +17,13 @@ const Login = () => {
         email,
         password
       );
-      console.log(userCredential);
       const user = userCredential.user;
       localStorage.setItem("token", user.accessToken);
       localStorage.setItem("user", JSON.stringify(user));
-      alert("Login Successful")
+      toast.success(`Login Successful ${user.displayName}`);
       navigate("/");
     } catch (error) {
+      toast.error("Invalid Credential");
       console.error(error);
     }
   };
@@ -56,7 +57,9 @@ const Login = () => {
         </button>
         <div className="flex min-w-fit gap-x-2">
           <h3 className="">Create account?</h3>
-          <Link to="/auth" className="text-blue-500 underline font-bold">Signup</Link>
+          <Link to="/auth" className="text-blue-500 underline font-bold">
+            Signup
+          </Link>
         </div>
       </form>
     </>

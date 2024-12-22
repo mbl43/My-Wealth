@@ -3,6 +3,7 @@ import { auth } from "../../firebase/firebase";
 import { createUserWithEmailAndPassword, updateProfile } from "firebase/auth";
 import { Link, useNavigate } from "react-router-dom";
 import { Navbar } from "../index";
+import { toast } from "react-toastify";
 
 const SignUp = () => {
   const [email, setemail] = useState("");
@@ -30,9 +31,12 @@ const SignUp = () => {
       // Store user info in localStorage
       localStorage.setItem("token", user.accessToken);
       localStorage.setItem("user", JSON.stringify(user));
-      alert(`Account created Successfully! Welcome ${user.displayName}`)
+      toast.success(
+        `Account created Successfully! Welcome ${user.displayName}`
+      );
       navigate("/");
     } catch (error) {
+      toast.error("Something Went Wrong");
       console.error("Error during signup:", error);
     }
   };

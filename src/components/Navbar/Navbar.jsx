@@ -6,6 +6,7 @@ import { RxHamburgerMenu } from "react-icons/rx";
 import { signOut } from "firebase/auth";
 import { auth } from "../../firebase/firebase";
 import { RiAccountCircleFill } from "react-icons/ri";
+import { toast } from "react-toastify";
 
 const Navbar = ({ user }) => {
   const [isMobile, setIsMobile] = useState(false); // State to toggle mobile menu
@@ -17,8 +18,10 @@ const Navbar = ({ user }) => {
       await signOut(auth);
       localStorage.removeItem("user");
       localStorage.removeItem("token");
+      toast.success("Logout Successful");
       navigate("/login");
     } catch (error) {
+      toast.error("Something Went Wrong");
       console.error("Logout failed:", error);
     }
   };
