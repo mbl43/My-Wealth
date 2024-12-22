@@ -1,88 +1,58 @@
-import auth  from "../../firebase/firebase"; // Use named import for clarity
-import React, { useState } from "react";
-import { signInWithEmailAndPassword, signOut } from "firebase/auth";
-import Layout from "../Layout/Layout";
-import { Link } from "react-router-dom";
-
-
+import React, { useState } from 'react';
+import {auth} from "../../firebase/firebase"
+import {signInWithEmailAndPassword} from "firebase/auth"
+import {Link, useNavigate} from "react-router-dom"
 const Login = () => {
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const [message, setMessage] = useState({ type: "", content: "" });
-  const [user, setUser] = useState(null);
+    const [email, setemail] = useState("");
+    const [password, setpassword] = useState("");
 
-  const handleLogin = async (e) => {
-    e.preventDefault();
-    setMessage({ type: "", content: "" });
-
-    if (!email || !password) {
-      setMessage({ type: "error", content: "All fields are required." });
-      return;
-    }
-
-    try {
-      const userCredential = await signInWithEmailAndPassword(auth, email, password);
-      setUser(userCredential.user);
-      setMessage({ type: "success", content: "Login successful!" });
-    } catch (error) {
-      setMessage({ type: "error", content: error.message });
-    }
-  };
-
+    const navigate=useNavigate()
+    const handlesubmit = async (e) => {
+      e.preventDefault();
+      try {
+        const userCredential=await signInWithEmailAndPassword(auth,email,password)
+        console.log(userCredential);
+        const user=userCredential.user
+        localStorage.setItem("token",user.accessToken)
+        localStorage.setItem("user",JSON.stringify(user))
+        navigate("/")
+         
+      } catch (error) {
+        console.error(error)
+      }
+    };
   return (
-    <Layout>
-      <div className="flex justify-center items-center h-screen bg-gray-100">
-        <div className="bg-white p-8 rounded-lg shadow-lg w-96">
-          <h2 className="text-2xl font-bold mb-4 text-center">{user ? "Welcome Back" : "Login"}</h2>
-          {message.content && (
-            <p className={`text-sm mb-4 ${message.type === "error" ? "text-red-500" : "text-green-500"}`}>
-              {message.content}
-            </p>
-          )}
-          {!user ? (
-            <form onSubmit={handleLogin}>
-              <InputField label="Email" type="email" value={email} onChange={(e) => setEmail(e.target.value)} />
-              <InputField label="Password" type="password" value={password} onChange={(e) => setPassword(e.target.value)} />
-              <button
-                type="submit"
-                className="w-full py-3 bg-green-500 text-white rounded-md hover:bg-green-600 transition"
-              >
-                Login
-              </button>
-            </form>
-          ) : (
-            <div className="text-center">
-              <h2 className="text-xl mb-4">Welcome, {user.email}!</h2>
-              <button
-                onClick={handleLogout}
-                className="w-full py-3 bg-red-500 text-white rounded-md hover:bg-red-600 transition"
-              >
-                Logout
-              </button>
-            </div>
-          )}
-          {!user && (
-            <Link to="/auth" className="flex items-center justify-center mt-3 underline text-blue-600">
-              Go to Signup page
-            </Link>
-          )}
-        </div>
-      </div>
-    </Layout>
-  );
-};
-
-const InputField = ({ label, type, value, onChange }) => (
-  <div className="mb-4">
-    <label className="block text-sm font-medium text-gray-700">{label}</label>
+    <>
+  <form
+    onSubmit={handlesubmit}
+    className="max-w-md mx-auto mt-10 p-6 bg-white shadow-lg rounded-lg space-y-4"
+  >
+    <h2 className="text-2xl font-bold text-center text-gray-800">Login</h2>
     <input
-      type={type}
-      value={value}
-      onChange={onChange}
-      className="w-full mt-2 p-3 border border-gray-300 rounded-md"
-      required
+      type="email"
+      className="w-full border border-gray-300 p-3 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+      placeholder="Enter email"
+      onChange={(e) => setemail(e.target.value)}
+      value={email}
     />
-  </div>
-);
+    <input
+      type="password"
+      className="w-full border border-gray-300 p-3 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+      placeholder="Enter password"
+      value={password}
+      onChange={(e) => setpassword(e.target.value)}
+    />
+    <button
+      type="submit"
+      className="w-full bg-blue-500 text-white py-3 rounded-lg font-semibold hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-400"
+    >
+      Login
+    </button>
+    <Link to="/auth">Create account? Signup</Link>
+  </form>
+</>
 
-export default Login;
+  )
+}
+
+export default Login

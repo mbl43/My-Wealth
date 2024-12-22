@@ -1,92 +1,57 @@
-import React, { useState } from "react";
-import  auth  from "../../firebase/firebase";
-import { createUserWithEmailAndPassword } from "firebase/auth";
-import Layout from "../Layout/Layout";
-import { Link } from "react-router-dom";
-
-// Use this
-// import  createUserWithEmailAndPassword  from "../../firebase/firebase";
-// When using the function
-// createUserWithEmailAndPassword(auth, email, password)
-
-
+import React, { useState } from 'react';
+import {auth} from "../../firebase/firebase"
+import {createUserWithEmailAndPassword} from "firebase/auth"
+import {Link, useNavigate} from "react-router-dom"
 const SignUp = () => {
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const [confirmPassword, setConfirmPassword] = useState("");
-  const [message, setMessage] = useState({ type: "", content: "" });
-
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    setMessage({ type: "", content: "" });
-
-    if (!email || !password || !confirmPassword) {
-      setMessage({ type: "error", content: "All fields are required." });
-      return;
-    }
-
-    if (password !== confirmPassword) {
-      setMessage({ type: "error", content: "Passwords do not match." });
-      return;
-    }
-
-    try {
-      await createUserWithEmailAndPassword(auth, email, password);
-      setMessage({ type: "success", content: "Account created successfully!" });
-      setEmail("");
-      setPassword("");
-      setConfirmPassword("");
-    } catch (error) {
-      setMessage({ type: "error", content: error.message });
-    }
-  };
-
+    const [email, setemail] = useState("");
+    const [password, setpassword] = useState("");
+    const navigate=useNavigate()
+    const handlesubmit = async (e) => {
+      e.preventDefault();
+      try {
+        const userCredential=await createUserWithEmailAndPassword(auth,email,password)
+        console.log(userCredential);
+        const user=userCredential.user
+        localStorage.setItem("token",user.accessToken)
+        localStorage.setItem("user",JSON.stringify(user))
+        navigate("/")
+         
+      } catch (error) {
+        console.error(error)
+      }
+    };
   return (
-    <Layout>
-      <div className="flex justify-center items-center h-screen bg-gray-100">
-        <div className="bg-white p-8 rounded-lg shadow-lg w-96">
-          <h2 className="text-2xl font-bold mb-4 text-center">Sign Up</h2>
-          {message.content && (
-            <p className={`text-sm mb-4 ${message.type === "error" ? "text-red-500" : "text-green-500"}`}>
-              {message.content}
-            </p>
-          )}
-          <form onSubmit={handleSubmit}>
-            <InputField label="Email" type="email" value={email} onChange={(e) => setEmail(e.target.value)} />
-            <InputField label="Password" type="password" value={password} onChange={(e) => setPassword(e.target.value)} />
-            <InputField
-              label="Confirm Password"
-              type="password"
-              value={confirmPassword}
-              onChange={(e) => setConfirmPassword(e.target.value)}
-            />
-            <button
-              type="submit"
-              className="w-full py-3 bg-green-500 text-white rounded-md hover:bg-green-600 transition"
-            >
-              Sign Up
-            </button>
-          </form>
-          <Link to="/login" className="flex items-center justify-center mt-3 underline text-blue-600">
-            Go to Login page
-          </Link>
-        </div>
-      </div>
-    </Layout>
-  );
-};
-
-const InputField = ({ label, type, value, onChange }) => (
-  <div className="mb-4">
-    <label className="block text-sm font-medium text-gray-700">{label}</label>
+    <>
+  <form
+    onSubmit={handlesubmit}
+    className="max-w-md mx-auto mt-10 p-6 bg-white shadow-lg rounded-lg space-y-4"
+  >
+    <h2 className="text-2xl font-bold text-center text-gray-800">Signup</h2>
     <input
-      type={type}
-      value={value}
-      onChange={onChange}
-      className="w-full mt-2 p-3 border border-gray-300 rounded-md"
-      required
+      type="email"
+      className="w-full border border-gray-300 p-3 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+      placeholder="Enter email"
+      onChange={(e) => setemail(e.target.value)}
+      value={email}
     />
-  </div>
-);
+    <input
+      type="password"
+      className="w-full border border-gray-300 p-3 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+      placeholder="Enter password"
+      value={password}
+      onChange={(e) => setpassword(e.target.value)}
+    />
+    <button
+      type="submit"
+      className="w-full bg-green-500 text-white py-3 rounded-lg font-semibold hover:bg-green-600 focus:outline-none focus:ring-2 focus:ring-green-400"
+    >
+      Signup
+    </button>
+    <Link to="/login">Allready have account? Login</Link>
+  </form>
+</>
 
-export default SignUp;
+  )
+}
+
+export default SignUp
