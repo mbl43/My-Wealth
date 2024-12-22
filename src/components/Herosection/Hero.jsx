@@ -5,7 +5,6 @@ import "swiper/css/pagination";
 import "swiper/css/navigation";
 import Layout from "../Layout/Layout";
 import { Autoplay, Pagination, Navigation } from "swiper/modules";
-import banner1 from "../../assets/heroimg/banner1.jpg";
 
 const Hero = () => {
   return (
@@ -29,7 +28,7 @@ const Hero = () => {
           {/* SwiperSlides for images */}
           <SwiperSlide>
             <img
-              src={banner1}
+              src="https://images.unsplash.com/photo-1622219999459-ab5b14e5f45a?fm=jpg&q=60&w=3000&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTJ8fHBpZ2d5JTIwYmFua3xlbnwwfHwwfHx8MA%3D%3D"
               className="w-full h-[90vh] object-cover"
               alt="Banner 1"
             />
