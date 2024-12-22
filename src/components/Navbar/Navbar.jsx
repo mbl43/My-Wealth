@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { Button } from "@mui/material";
 import { IoCloseSharp } from "react-icons/io5";
 import { RxHamburgerMenu } from "react-icons/rx";
@@ -7,12 +7,12 @@ import { RiAccountCircleFill } from "react-icons/ri";
 
 const Navbar = () => {
   const [isMobile, setIsMobile] = useState(false); // State to toggle mobile menu
-
   const toggleMenu = () => {
     setIsMobile(!isMobile);
   };
 
-    return (
+
+  return (
     <div className="bg-[#0063c5] shadow-lg sticky top-0 z-50">
       <div className="w-full max-h-20 px-4 ">
         <div className="flex flex-row items-center max-w-7xl mx-auto justify-between py-4">
@@ -48,7 +48,7 @@ const Navbar = () => {
             }`}
             onClick={() => setIsMobile(false)} // Close menu on link click
           >
-            {["Home", "About", "Services", "Contact"].map((text) => (
+            {["Home","Services", "Contact"].map((text) => (
               <Link
                 key={text}
                 to={text === "Home" ? "/" : `/${text.toLowerCase()}`}
@@ -83,6 +83,7 @@ const Navbar = () => {
             >
               <Link to="/login">Login</Link>
             </Button>
+           
           </div>
         </div>
       </div>
