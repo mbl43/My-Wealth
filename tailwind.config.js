@@ -8,4 +8,7 @@ export default {
     extend: {},
   },
   plugins: [],
+  screens: {
+    md: '768px',
+  },
 }
