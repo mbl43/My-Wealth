@@ -11,13 +11,11 @@
 - **Privacy First**: No personal information is required to use the app.
 - **Notifications**: Monthly updates and alerts to keep users informed.
 - **Emergency Notifications**: Inform heirs about unclaimed money in case of emergencies.
-
 ---
 
 ## 🛠️ Tech Stack
 
-- **Frontend**: React, Vite
-- **Backend**: Node.js (optional for advanced features)
+- **Frontend**: React, Vite, React router, MUI
 - **Database**:Firebase
 - **Styling**: CSS3, Tailwind CSS
 - **State Management**: Redux
