@@ -1,8 +1,25 @@
-# React + Vite
+# My Wealth
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+**My Wealth** is a React-based web application designed to promote financial literacy and assist users in tracking their wealth, including investments in LIC, banks, and mutual funds. The app ensures privacy by not requiring personal information while providing monthly updates and tools for better financial management.
 
-Currently, two official plugins are available:
+---
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## 🚀 Features
+
+- **Financial Literacy**: Spread awareness about unclaimed money in LIC, banks, and mutual funds.
+- **Investment Tracking**: Track investments like SIPs and stocks.
+- **Privacy First**: No personal information is required to use the app.
+- **Notifications**: Monthly updates and alerts to keep users informed.
+- **Emergency Notifications**: Inform heirs about unclaimed money in case of emergencies.
+
+---
+
+## 🛠️ Tech Stack
+
+- **Frontend**: React, Vite
+- **Backend**: Node.js (optional for advanced features)
+- **Database**:Firebase
+- **Styling**: CSS3, Tailwind CSS
+- **State Management**: Redux
+
+---
