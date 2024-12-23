@@ -7,7 +7,7 @@
 ## 🚀 Features
 
 - **Financial Literacy**: Spread awareness about unclaimed money in LIC, banks, and mutual funds.
-- **Investment Tracking**: Track investments like SIPs and stocks.
+- **Investment Tracking**: Track investments like SIPs, stocks and golds.
 - **Privacy First**: No personal information is required to use the app.
 - **Notifications**: Monthly updates and alerts to keep users informed.
 - **Emergency Notifications**: Inform heirs about unclaimed money in case of emergencies.
@@ -21,5 +21,5 @@
 - **Database**:Firebase
 - **Styling**: CSS3, Tailwind CSS
 - **State Management**: Redux
-
+- **Authentication**: Firebase Auth
 ---
